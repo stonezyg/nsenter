@@ -1,0 +1,24 @@
+#/bin/sh
+#TEXT: ssh disable root login
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+if ! [ -f /etc/ssh/sshd_config ] > /dev/null 
+then 
+  echo "== N/A ==" 
+  exit 2  
+fi
+
+# ==== Check FAILED conditions ====
+if ! grep -q '^PermitRootLogin no' /etc/ssh/sshd_config >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

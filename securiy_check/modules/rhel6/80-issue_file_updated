@@ -1,0 +1,35 @@
+#/bin/sh
+#TEXT: issue files updated
+#Return  0:True, 1:False, 2 N/A
+
+# ==== Check N/A conditions ====
+
+if ! ls /etc/issue /etc/issue.net /etc/motd > /dev/null 
+then 
+  echo "== N/A ==" 
+  exit 2  
+fi
+
+# ==== Check FAILED conditions ====
+if ! md5sum /etc/issue | grep 1c705a9da3488f9bd3b446f778153da7 >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+if ! md5sum /etc/issue.net | grep 1c705a9da3488f9bd3b446f778153da7 >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+if ! md5sum /etc/motd | grep 1c705a9da3488f9bd3b446f778153da7 >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

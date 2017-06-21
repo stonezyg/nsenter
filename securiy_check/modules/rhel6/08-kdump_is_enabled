@@ -1,0 +1,19 @@
+#/bin/sh
+#TEXT: NTP Server Check
+#Return  0:True, 1:False, 2 N/A
+
+if ! which kdump ; then exit 2 ; fi
+
+if ! cat /boot/grub/grub.conf  |grep vmlinuz-2.6 | head -1 | grep "crashkernel" ; then
+   exit 1
+fi
+
+if ! cat /proc/cmdline | grep "crashkernel" ; then
+   exit 1
+fi
+
+echo ""
+echo "==Success=="
+echo ""
+exit 0
+

@@ -1,0 +1,23 @@
+#/bin/sh
+#TEXT: dangerous file removed
+#Return  0:True, 1:False, 2 N/A
+
+# ==== Check N/A conditions ====
+
+# ==== Check FAILED conditions ====
+
+while read i ; do 
+  if test -f $i ; then 
+    exit 1
+  fi 
+done << EOF
+/root/.rhosts
+/root/.shosts
+/etc/hosts.equiv
+/etc/shosts.equiv
+EOF
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

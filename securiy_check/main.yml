@@ -1,0 +1,278 @@
+---
+- hosts: all
+  vars:
+    output_diskinfo: /tmp/ansible-checkresult-disk.txt 
+    output: /tmp/ansible-checkresult-common.txt 
+
+  tasks:
+  - name: purge output file
+#    shell: "> {{ output }}; > {{ output_diskinfo }}"
+    shell: "> {{ output }}"
+  
+  - include: include/diskinfo.yml
+
+# -------------------- Check KDUMP_IS_ENABLED --------------------
+  - set_fact: 
+      mod_file: 08-kdump_is_enabled 
+      mod_name: kdump_is_enabled 
+  - include : include/module.yml
+
+# -------------------- Check SELINUX_IS_DISABLED --------------------
+  - set_fact: 
+      mod_file: 10-selinux_is_disabled 
+      mod_name: selinux_is_disabled 
+  - include : include/module.yml
+
+# -------------------- Check RUNLEVEL_IS_3 --------------------
+  - set_fact: 
+      mod_file: 12-runlevel_is_3 
+      mod_name: runlevel_is_3 
+  - include : include/module.yml
+
+# -------------------- Check BONDING_CONF --------------------
+  - set_fact: 
+      mod_file: 14-bonding_conf 
+      mod_name: bonding_conf 
+  - include : include/module.yml
+
+# -------------------- Check NTP_CONF --------------------
+  - set_fact: 
+      mod_file: 16-ntp_conf 
+      mod_name: ntp_conf 
+  - include : include/module.yml
+
+# -------------------- Check LOGROTATE_CONF --------------------
+  - set_fact: 
+      mod_file: 18-logrotate_conf 
+      mod_name: logrotate_conf 
+  - include : include/module.yml
+
+# -------------------- Check AUDIT_CONF --------------------
+  - set_fact: 
+      mod_file: 20-audit_conf 
+      mod_name: audit_conf 
+  - include : include/module.yml
+
+# -------------------- Check FILESYSTEM --------------------
+  - set_fact: 
+      mod_file: 22-filesystem 
+      mod_name: filesystem 
+  - include : include/module.yml
+
+# -------------------- Check ULIMIT_CONF --------------------
+  - set_fact: 
+      mod_file: 24-ulimit_conf 
+      mod_name: ulimit_conf 
+  - include : include/module.yml
+
+# -------------------- Check CRONTAB_DISABLE_MAIL --------------------
+  - set_fact: 
+      mod_file: 26-crontab_disable_mail 
+      mod_name: crontab_disable_mail 
+  - include : include/module.yml
+
+# -------------------- Check PASSWORD_AGING --------------------
+  - set_fact: 
+      mod_file: 28-password_aging 
+      mod_name: password_aging 
+  - include : include/module.yml
+
+# -------------------- Check PASSWORD_COMPLEXITY --------------------
+  - set_fact: 
+      mod_file: 30-password_complexity 
+      mod_name: password_complexity 
+  - include : include/module.yml
+
+# -------------------- Check PASSWORD_MULTIPLEXING --------------------
+  - set_fact: 
+      mod_file: 32-password_multiplexing 
+      mod_name: password_multiplexing 
+  - include : include/module.yml
+
+# -------------------- Check PASSWORD_LOCKING --------------------
+  - set_fact: 
+      mod_file: 34-password_locking 
+      mod_name: password_locking 
+  - include : include/module.yml
+
+# -------------------- Check NO_UID0_EXCEPT_ROOT --------------------
+  - set_fact: 
+      mod_file: 36-no_uid0_except_root 
+      mod_name: no_uid0_except_root 
+  - include : include/module.yml
+
+# -------------------- Check NO_EMPTYPASSWORD --------------------
+  - set_fact: 
+      mod_file: 38-no_emptypassword 
+      mod_name: no_emptypassword 
+  - include : include/module.yml
+
+# -------------------- Check SYSTEMACCOUNT_DISABLED --------------------
+  - set_fact: 
+      mod_file: 40-systemaccount_disabled 
+      mod_name: systemaccount_disabled 
+  - include : include/module.yml
+
+# -------------------- Check UNUSED_SERVICE_DISABLED --------------------
+  - set_fact: 
+      mod_file: 42-unused_service_disabled 
+      mod_name: unused_service_disabled 
+  - include : include/module.yml
+
+# -------------------- Check SHELL_HISTORY_TIME_FORMAT --------------------
+  - set_fact: 
+      mod_file: 44-shell_history_time_format 
+      mod_name: shell_history_time_format 
+  - include : include/module.yml
+
+# -------------------- Check SHELL_PROMPT_COMMAND --------------------
+  - set_fact: 
+      mod_file: 46-shell_prompt_command 
+      mod_name: shell_prompt_command 
+  - include : include/module.yml
+
+# -------------------- Check SHELL_HISTORY_IGNOREDUPS --------------------
+  - set_fact: 
+      mod_file: 48-shell_history_ignoredups 
+      mod_name: shell_history_ignoredups 
+  - include : include/module.yml
+
+# -------------------- Check SHELL_HISTSIZE --------------------
+  - set_fact: 
+      mod_file: 50-shell_histsize 
+      mod_name: shell_histsize 
+  - include : include/module.yml
+
+# -------------------- Check SHELL_TIMEOUT_SET --------------------
+  - set_fact: 
+      mod_file: 52-shell_timeout_set 
+      mod_name: shell_timeout_set 
+  - include : include/module.yml
+
+# -------------------- Check FILE_UMASK_SET --------------------
+  - set_fact: 
+      mod_file: 54-file_umask_set 
+      mod_name: file_umask_set 
+  - include : include/module.yml
+
+# -------------------- Check DISABLE_USB_STORAGE --------------------
+  - set_fact: 
+      mod_file: 56-disable_usb_storage 
+      mod_name: disable_usb_storage 
+  - include : include/module.yml
+
+# -------------------- Check CTRL_ALT_DEL_DISABLED --------------------
+  - set_fact: 
+      mod_file: 58-ctrl_alt_del_disabled 
+      mod_name: ctrl_alt_del_disabled 
+  - include : include/module.yml
+
+# -------------------- Check GRUB_PASSWORD_PROTECT --------------------
+  - set_fact: 
+      mod_file: 60-grub_password_protect 
+      mod_name: grub_password_protect 
+  - include : include/module.yml
+
+# -------------------- Check XWIN_DISABLED --------------------
+  - set_fact: 
+      mod_file: 62-Xwin_disabled 
+      mod_name: Xwin_disabled 
+  - include : include/module.yml
+
+# -------------------- Check SSHD_PORT_22 --------------------
+  - set_fact: 
+      mod_file: 64-sshd_port_22 
+      mod_name: sshd_port_22 
+  - include : include/module.yml
+
+# -------------------- Check SSHD_PROTO_V2 --------------------
+  - set_fact: 
+      mod_file: 66-sshd_proto_v2 
+      mod_name: sshd_proto_v2 
+  - include : include/module.yml
+
+# -------------------- Check SSHD_DISABLE_ROOT_LOGIN --------------------
+  - set_fact: 
+      mod_file: 68-sshd_disable_root_login 
+      mod_name: sshd_disable_root_login 
+  - include : include/module.yml
+
+# -------------------- Check SSHD_LOGLEVEL_INFO --------------------
+  - set_fact: 
+      mod_file: 70-sshd_loglevel_info 
+      mod_name: sshd_loglevel_info 
+  - include : include/module.yml
+
+# -------------------- Check SSHD_MAXAUTHTRIES_SET --------------------
+  - set_fact: 
+      mod_file: 72-sshd_MaxAuthTries_set 
+      mod_name: sshd_MaxAuthTries_set 
+  - include : include/module.yml
+
+# -------------------- Check SSHD_DISABLE_EMPTYPASSWORD --------------------
+  - set_fact: 
+      mod_file: 74-sshd_disable_EmptyPassword 
+      mod_name: sshd_disable_EmptyPassword 
+  - include : include/module.yml
+
+# -------------------- Check SSHD_BANNER_SET --------------------
+  - set_fact: 
+      mod_file: 76-sshd_banner_set 
+      mod_name: sshd_banner_set 
+  - include : include/module.yml
+
+# -------------------- Check VSFTPD_CONF --------------------
+  - set_fact: 
+      mod_file: 78-vsftpd_conf 
+      mod_name: vsftpd_conf 
+  - include : include/module.yml
+
+# -------------------- Check ISSUE_FILE_UPDATED --------------------
+  - set_fact: 
+      mod_file: 80-issue_file_updated 
+      mod_name: issue_file_updated 
+  - include : include/module.yml
+
+# -------------------- Check FILE_PERMISSIONS_CONF --------------------
+  - set_fact: 
+      mod_file: 82-file_permissions_conf 
+      mod_name: file_permissions_conf 
+  - include : include/module.yml
+
+# -------------------- Check DANGEROUS_FILE_REMOVED --------------------
+  - set_fact: 
+      mod_file: 84-dangerous_file_removed 
+      mod_name: dangerous_file_removed 
+  - include : include/module.yml
+
+# -------------------- Check COMMAND_SU_CONF --------------------
+  - set_fact: 
+      mod_file: 86-command_su_conf 
+      mod_name: command_su_conf 
+  - include : include/module.yml
+
+
+# =======================================================
+# ============ Finally Fetching Results  ================
+# =======================================================
+#  - name: fetch fdisk results 
+#    fetch: 
+#      src: "{{ output_diskinfo }}"
+#      dest: results/result-{{ inventory_hostname }}-disk.txt
+#      flat: yes
+
+  - name: fetch results {{ inventory_hostname }}
+    fetch: 
+      src: "{{ output }}"
+      dest: results/result-{{ inventory_hostname }}.csv
+      flat: yes
+
+  - name: clean up
+    file:
+        dest: "{{ item }}"
+        state: absent
+    with_items:
+        - /tmp/ansible-checkresult-disk.txt
+        - /tmp/ansible-checkresult-common.txt
+        - /tmp/ansible-checkmod_current0.sh
+

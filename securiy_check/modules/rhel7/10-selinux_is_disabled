@@ -1,0 +1,10 @@
+#/bin/sh
+
+if ! test -f /etc/selinux/config ; then exit 2 ; fi
+
+if getenforce |grep -i disabled ; then 
+   exit 0
+else 
+   exit 1
+fi
+

@@ -1,0 +1,18 @@
+#/bin/sh
+#TEXT: disable Xwindow
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+# ==== Check FAILED conditions ====
+if ! grep "id:3:initdefault" /etc/inittab  >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

@@ -1,0 +1,62 @@
+#/bin/sh
+#TEXT: Ulimit Check
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+if ! ls /etc/security/limits.conf > /dev/null 
+then 
+  echo "== N/A ==" 
+  exit 2  
+fi
+
+# ==== Check Failed conditions ====
+#
+if test -f /etc/security/limits.d/90-nproc.conf
+then
+  echo "== Failed ==" 
+  exit 1  
+fi
+
+if ! grep -v ^# /etc/security/limits.conf | grep ".*soft[[:space:]]\{1,\}core[[:space:]]\{1,\}102400"  > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+if ! grep -v ^# /etc/security/limits.conf | grep ".*hard[[:space:]]\{1,\}core[[:space:]]\{1,\}102400"  > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+if ! grep -v ^# /etc/security/limits.conf | grep ".*soft[[:space:]]\{1,\}nofile[[:space:]]\{1,\}65535"  > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+if ! grep -v ^# /etc/security/limits.conf | grep ".*hard[[:space:]]\{1,\}nofile[[:space:]]\{1,\}65535"  > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+if ! grep -v ^# /etc/security/limits.conf | grep ".*soft[[:space:]]\{1,\}noproc[[:space:]]\{1,\}65535"  > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+if ! grep -v ^# /etc/security/limits.conf | grep ".*hard[[:space:]]\{1,\}noproc[[:space:]]\{1,\}65535"  > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

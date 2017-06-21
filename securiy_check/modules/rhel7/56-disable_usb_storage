@@ -1,0 +1,24 @@
+#/bin/sh
+#TEXT: disable usb storage
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+# ==== Check FAILED conditions ====
+if ! ls /etc/modprobe.d/usb-storage.conf >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+if ! grep -q 'install usb-storage /bin/true' /etc/modprobe.d/usb-storage.conf >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

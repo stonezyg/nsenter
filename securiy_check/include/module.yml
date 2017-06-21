@@ -1,0 +1,58 @@
+- name: Clean UP
+  file:
+    dest: /tmp/ansible-checkmod_current0.sh
+    state: absent
+
+- name: Copy mod {{ mod_name }} if RHEL6
+  copy:
+    src: modules/rhel6/{{ mod_file }}
+    dest: /tmp/ansible-checkmod_current0.sh
+    owner: root
+    group: root
+    mode: 0755
+  changed_when: false
+  failed_when: false
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version  == "6"
+
+- name: Copy mod {{ mod_name }} if RHEL7
+  copy:
+    src: modules/rhel7/{{ mod_file }}
+    dest: /tmp/ansible-checkmod_current0.sh
+    owner: root
+    group: root
+    mode: 0755
+  changed_when: false
+  failed_when: false
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_distribution_major_version  == "7"
+
+- name: "Reset Return Value"
+  shell: "exit 255"
+  register: tmp_ret
+  changed_when: false
+  failed_when: false
+
+- name: Run Checking Module {{ mod_name }}
+  shell: "/tmp/ansible-checkmod_current0.sh"
+  register: tmp_ret
+  changed_when: false
+  failed_when: false
+  when:
+    - ansible_os_family == "RedHat"
+  
+- name: "check {{ mod_name }} & Report True"
+  shell: "echo {{ inventory_hostname }},{{ mod_name }},True >> {{ output }}"
+  when: tmp_ret.rc == 0 
+
+- name: "check {{ mod_name }} & Report False"
+  shell: "echo {{ inventory_hostname }},{{ mod_name }},False >> {{ output }}"
+  when: tmp_ret.rc == 1 
+
+- name: "check {{ mod_name }} & Report N/A"
+  shell: "echo {{ inventory_hostname }},{{ mod_name }},N/A >> {{ output }}"
+  when: tmp_ret.rc == 2 
+
+

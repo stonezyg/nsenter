@@ -1,0 +1,38 @@
+#/bin/sh
+#TEXT: system account disable Check
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+if ! ls /etc/shadow > /dev/null 
+then 
+  echo "== N/A ==" 
+  exit 2  
+fi
+
+# ==== Check FAILED conditions ====
+#
+
+rm -f failed_flag
+
+for user in `cut -d: -f1 /etc/passwd`; do passwd -S $user |grep 'in use' | awk '{print $1}' ; done | 
+while read i ; do
+  if ! grep ^$i /etc/passwd | grep /dev/null ; then 
+     touch failed_flag
+  fi
+  if ! grep ^$i /etc/shadow | grep '!\*:' ; then 
+     touch failed_flag
+  fi
+done
+
+if test -f failed_flag ; then 
+  echo "== Failed =="
+  rm -f failed_flag
+  exit 1 
+fi
+
+# ==== Success 
+echo "== Success =="
+exit 0
+

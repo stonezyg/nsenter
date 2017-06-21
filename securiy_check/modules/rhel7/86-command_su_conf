@@ -1,0 +1,18 @@
+#/bin/sh
+#TEXT: SU command config
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+# ==== Check FAILED conditions ====
+if ! grep -q 'auth            required        pam_wheel.so use_uid root_only'  /etc/pam.d/su >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

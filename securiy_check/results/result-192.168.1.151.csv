@@ -1,0 +1,47 @@
+/dev/sda1   *           1          39      307200   83  Linux
+/dev/sda2              39         549     4096000   82  Linux swap / Solaris
+/dev/sda3             549        5222    37538816   83  Linux
+-------------------------
+/dev/sda3        36G  6.5G   27G  20% /
+/dev/sda1       283M   39M  229M  15% /boot
+-------------------------
+192.168.1.151,kdump_is_enabled,True
+192.168.1.151,selinux_is_disabled,False
+192.168.1.151,runlevel_is_3,True
+192.168.1.151,bonding_conf,N/A
+192.168.1.151,ntp_conf,False
+192.168.1.151,logrotate_conf,False
+192.168.1.151,audit_conf,False
+192.168.1.151,filesystem,N/A
+192.168.1.151,ulimit_conf,False
+192.168.1.151,crontab_disable_mail,False
+192.168.1.151,password_aging,False
+192.168.1.151,password_complexity,True
+192.168.1.151,password_multiplexing,False
+192.168.1.151,password_locking,False
+192.168.1.151,no_uid0_except_root,True
+192.168.1.151,no_emptypassword,True
+192.168.1.151,systemaccount_disabled,False
+192.168.1.151,unused_service_disabled,False
+192.168.1.151,shell_history_time_format,False
+192.168.1.151,shell_prompt_command,False
+192.168.1.151,shell_history_ignoredups,False
+192.168.1.151,shell_histsize,True
+192.168.1.151,shell_timeout_set,False
+192.168.1.151,file_umask_set,False
+192.168.1.151,disable_usb_storage,False
+192.168.1.151,ctrl_alt_del_disabled,False
+192.168.1.151,grub_password_protect,False
+192.168.1.151,Xwin_disabled,True
+192.168.1.151,sshd_port_22,False
+192.168.1.151,sshd_proto_v2,True
+192.168.1.151,sshd_disable_root_login,False
+192.168.1.151,sshd_loglevel_info,False
+192.168.1.151,sshd_MaxAuthTries_set,False
+192.168.1.151,sshd_disable_EmptyPassword,False
+192.168.1.151,sshd_banner_set,False
+192.168.1.151,vsftpd_conf,N/A
+192.168.1.151,issue_file_updated,False
+192.168.1.151,file_permissions_conf,False
+192.168.1.151,dangerous_file_removed,True
+192.168.1.151,command_su_conf,False

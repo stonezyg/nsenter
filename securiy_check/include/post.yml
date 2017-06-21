@@ -1,0 +1,25 @@
+
+# =======================================================
+# ============ Finally Fetching Results  ================
+# =======================================================
+#  - name: fetch fdisk results 
+#    fetch: 
+#      src: "{{ output_diskinfo }}"
+#      dest: results/result-{{ inventory_hostname }}-disk.txt
+#      flat: yes
+
+  - name: fetch results {{ inventory_hostname }}
+    fetch: 
+      src: "{{ output }}"
+      dest: results/result-{{ inventory_hostname }}.csv
+      flat: yes
+
+  - name: clean up
+    file:
+        dest: "{{ item }}"
+        state: absent
+    with_items:
+        - /tmp/ansible-checkresult-disk.txt
+        - /tmp/ansible-checkresult-common.txt
+        - /tmp/ansible-checkmod_current0.sh
+

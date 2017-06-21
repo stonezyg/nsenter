@@ -1,0 +1,50 @@
+#/bin/sh
+#TEXT: XXX Check
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+if ! ls /sbin/chkconfig > /dev/null 
+then 
+  echo "== N/A ==" 
+  exit 2  
+fi
+
+# ==== Check FAILED conditions ====
+while read i ; do 
+  echo checking $i
+  if chkconfig --list $i |egrep '3:on|5:on' ; then 
+     exit 1
+  fi
+done << EOF
+autofs
+bluetooth
+cups
+postfix
+rhnsd
+rhsmcertd
+NetworkManager
+acpid
+dnsmasq
+firstboot
+iptables
+ip6tables
+postgresql
+pppoe-server
+pcscd
+smb
+httpd
+squid
+smartd
+spice-vdagentd
+wpa_supplicant
+winbind
+ypbind
+xinetd
+EOF
+
+# ==== Success ======
+echo "== Success =="
+exit 0
+

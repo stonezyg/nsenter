@@ -1,0 +1,31 @@
+#/bin/sh
+#TEXT: issue files updated
+#Return  0:True, 1:False, 2 N/A
+
+# ==== Check N/A conditions ====
+
+# ==== Check FAILED conditions ====
+
+while read a b ; do 
+  if ! ls -ld "$a" |grep -q "^$b" ; then
+    echo "== Failed =="
+    exit 1
+  fi
+done << EOF  
+/tmp/ drwxrwxrwt 
+/var/tmp/ drwxrwxrwt 
+/etc/passwd -rw-r--r-- 
+/etc/group -rw-r--r-- 
+/etc/shadow ---------- 
+/etc/gshadow ---------- 
+/etc/hosts -rw-rw-r-- 
+/etc/sysctl.conf -rw-r--r-- 
+/etc/crontab -r-------- 
+/etc/securetty -r-------- 
+/etc/login.defs -rw-r----- 
+EOF
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

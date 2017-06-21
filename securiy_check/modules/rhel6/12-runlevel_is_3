@@ -1,0 +1,13 @@
+#/bin/sh
+
+if ! grep '^id:3:'  /etc/inittab ; then 
+   exit 1
+fi
+
+runlevel | while read a b ; do 
+  if (( b != '3')); then
+     exit 1 
+  fi
+done
+
+exit 0

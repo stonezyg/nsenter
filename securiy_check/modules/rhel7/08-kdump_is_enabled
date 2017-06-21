@@ -1,0 +1,19 @@
+#/bin/sh
+#TEXT: NTP Server Check
+#Return  0:True, 1:False, 2 N/A
+
+if ! which kdumpctl ; then exit 2 ; fi
+
+if ! cat /boot/grub2/grub.cfg  |grep linux16 | grep "crashkernel=auto" ; then
+   exit 1
+fi
+
+if ! cat /proc/cmdline | grep "crashkernel=auto" ; then
+   exit 1
+fi
+
+echo ""
+echo "==Success=="
+echo ""
+exit 0
+

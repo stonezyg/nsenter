@@ -1,0 +1,46 @@
+/dev/sda1   *        2048     1026047      512000   83  Linux
+/dev/sda2         1026048    83886079    41430016   8e  Linux LVM
+-------------------------
+/dev/mapper/rhel-root   37G   11G   26G  30% /
+/dev/sda1              497M  142M  356M  29% /boot
+-------------------------
+192.168.1.155,kdump_is_enabled,False
+192.168.1.155,selinux_is_disabled,True
+192.168.1.155,runlevel_is_3,True
+192.168.1.155,bonding_conf,True
+192.168.1.155,ntp_conf,True
+192.168.1.155,logrotate_conf,True
+192.168.1.155,audit_conf,False
+192.168.1.155,filesystem,N/A
+192.168.1.155,ulimit_conf,False
+192.168.1.155,crontab_disable_mail,True
+192.168.1.155,password_aging,False
+192.168.1.155,password_complexity,False
+192.168.1.155,password_multiplexing,False
+192.168.1.155,password_locking,False
+192.168.1.155,no_uid0_except_root,True
+192.168.1.155,no_emptypassword,True
+192.168.1.155,systemaccount_disabled,False
+192.168.1.155,unused_service_disabled,False
+192.168.1.155,shell_history_time_format,False
+192.168.1.155,shell_prompt_command,False
+192.168.1.155,shell_history_ignoredups,False
+192.168.1.155,shell_histsize,False
+192.168.1.155,shell_timeout_set,False
+192.168.1.155,file_umask_set,False
+192.168.1.155,disable_usb_storage,False
+192.168.1.155,ctrl_alt_del_disabled,True
+192.168.1.155,grub_password_protect,False
+192.168.1.155,Xwin_disabled,True
+192.168.1.155,sshd_port_22,True
+192.168.1.155,sshd_proto_v2,True
+192.168.1.155,sshd_disable_root_login,False
+192.168.1.155,sshd_loglevel_info,False
+192.168.1.155,sshd_MaxAuthTries_set,False
+192.168.1.155,sshd_disable_EmptyPassword,False
+192.168.1.155,sshd_banner_set,True
+192.168.1.155,vsftpd_conf,False
+192.168.1.155,issue_file_updated,False
+192.168.1.155,file_permissions_conf,False
+192.168.1.155,dangerous_file_removed,True
+192.168.1.155,command_su_conf,False

@@ -1,0 +1,10 @@
+#/bin/sh
+
+if ! which systemctl ; then exit 2 ; fi
+
+if systemctl get-default |grep -i multi-user ; then 
+   exit 0
+else 
+   exit 1
+fi
+

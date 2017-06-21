@@ -1,0 +1,42 @@
+#/bin/sh
+#TEXT: NTP Server Check
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+if ! ls /etc/audit/audit.rules /etc/audit/auditd.conf > /dev/null 
+then 
+  echo "== N/A ==" 
+  exit 2  
+fi
+
+# ==== Check FAILED conditions ====
+if ! md5sum /etc/audit/audit.rules | grep 48f46b6385bf81c1fd199c43d101cc79 >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+if ! grep 'flush = NONE' /etc/audit/auditd.conf > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+if ! grep 'num_logs = 4' /etc/audit/auditd.conf > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+if ! grep "max_log_file = 50" /etc/audit/auditd.conf > /dev/null
+then 
+  echo "== Failed =="
+  exit 1
+fi  
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

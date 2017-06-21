@@ -1,0 +1,8 @@
+1. Please edit my_hosts for host list.
+2. run ./start.sh to start exam.
+3. if there are hosts failed connect, run ./retry.sh
+
+Developer:
+ - custom modules should be put under modules/{rhel6,rhel7}/ directory.
+ - module should has proper return value: 0 for success, 1 for failed, 2 for Not Avaliable.
+ 

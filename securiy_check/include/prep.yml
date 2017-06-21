@@ -1,0 +1,13 @@
+---
+- hosts: all
+  vars:
+    output_diskinfo: /tmp/ansible-checkresult-disk.txt 
+    output: /tmp/ansible-checkresult-common.txt 
+
+  tasks:
+  - name: purge output file
+#    shell: "> {{ output }}; > {{ output_diskinfo }}"
+    shell: "> {{ output }}"
+  
+  - include: include/diskinfo.yml
+

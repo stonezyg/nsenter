@@ -1,0 +1,24 @@
+#/bin/sh
+#TEXT: disable usb storage
+#Return  0:True, 1:False, 2 N/A
+
+
+# ==== Check N/A conditions ====
+
+# ==== Check FAILED conditions ====
+if grep -q '^start on control-alt-delete' /etc/init/control-alt-delete.conf >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+if grep -q '^exec /sbin/shutdown' /etc/init/control-alt-delete.conf >> /dev/null 
+then
+  echo "== Failed =="
+  exit 1
+fi
+
+# ==== Success Remains ====
+echo "== Success =="
+exit 0
+

@@ -1,0 +1,9 @@
+# ================ Disk Info =================
+- name: Get Disk/FS Info.
+  shell: " (
+              fdisk -l |grep ^/dev; 
+              echo '-------------------------' ;
+              df -h | grep  '^/dev'; 
+              echo '-------------------------' ;
+           ) >> {{ output }}"
+

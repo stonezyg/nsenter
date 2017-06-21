@@ -1,0 +1,10 @@
+#/bin/sh
+
+if [ ! -d /proc/net/bonding ] ; then exit 2 ; fi
+
+if grep fault-tolerance /proc/net/bonding/* ; then 
+   exit 0
+else 
+   exit 1
+fi
+
